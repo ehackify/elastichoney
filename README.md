@@ -27,8 +27,6 @@ It also allows system administrators to:
 - The HNP server is supported on Ubuntu 18.04, Ubuntu 16.04, and Centos 6.9.  
 - Other versions of Linux may work but are generally not tested or supported.
 
-Note: if you run into trouble during the install, please checkout the [troubleshooting guide](https://github.com/ehackify/HNP/wiki/HNP-Troubleshooting-Guide) on the wiki.  If you only want to experiment with HNP on some virtual machines, please check out the [Getting up and Running with Vagrant](https://github.com/ehackify/HNP/wiki/Getting-up-and-running-using-Vagrant) guide on the wiki.
-
 Install Git
 
     # on Debian or Ubuntu
@@ -37,8 +35,8 @@ Install Git
 Install HNP
     
     $ cd /opt/
-    $ sudo git clone https://github.com/ehackify/HNP.git
-    $ cd HNP/
+    $ sudo git clone https://github.com/ehackify/hnp.git
+    $ cd hnp/
 
 Run the following script to complete the installation.  While this script runs,
 you will be prompted for some configuration options.  See below for how this
@@ -64,7 +62,7 @@ looks.
     Mail server username [""]: 
     Mail server password [""]: 
     Mail default sender [""]: 
-    Path for log file ["HNP.log"]: 
+    Path for log file ["hnp.log"]: 
 
 
 ### Running
@@ -72,18 +70,18 @@ looks.
 If the installation scripts ran successfully, you should have a number of
 services running on your HNP server.  See below for checking these.
 
-    user@precise64:/opt/HNP/scripts$ sudo /etc/init.d/nginx status
+    user@precise64:/opt/hnp/scripts$ sudo /etc/init.d/nginx status
      * nginx is running
-    user@precise64:/opt/HNP/scripts$ sudo /etc/init.d/supervisor status
+    user@precise64:/opt/hnp/scripts$ sudo /etc/init.d/supervisor status
      is running
-    user@precise64:/opt/HNP/scripts$ sudo supervisorctl status
+    user@precise64:/opt/hnp/scripts$ sudo supervisorctl status
     geoloc                           RUNNING    pid 31443, uptime 0:00:12
     honeymap                         RUNNING    pid 30826, uptime 0:08:54
     hpfeeds-broker                   RUNNING    pid 10089, uptime 0:36:42
-    HNP-celery-beat                  RUNNING    pid 29909, uptime 0:18:41
-    HNP-celery-worker                RUNNING    pid 29910, uptime 0:18:41
-    HNP-collector                    RUNNING    pid 7872,  uptime 0:18:41
-    HNP-uwsgi                        RUNNING    pid 29911, uptime 0:18:41
+    hnp-celery-beat                  RUNNING    pid 29909, uptime 0:18:41
+    hnp-celery-worker                RUNNING    pid 29910, uptime 0:18:41
+    hnp-collector                    RUNNING    pid 7872,  uptime 0:18:41
+    hnp-uwsgi                        RUNNING    pid 29911, uptime 0:18:41
     mnemosyne                        RUNNING    pid 28173, uptime 0:30:08
 
 ## Deploying honeypots with HNP
@@ -107,31 +105,19 @@ hpfeeds-logger can be used to integrate HNP with Splunk and ArcSight.
 #### Splunk
 
 
-    cd /opt/HNP/scripts/
+    cd /opt/hnp/scripts/
     sudo ./install_hpfeeds-logger-splunk.sh
 
-This will log the events as key/value pairs to /var/log/HNP-splunk.log.  This
+This will log the events as key/value pairs to /var/log/hnp-splunk.log.  This
 log should be monitored by the SplunkUniversalForwarder.
 
 #### Arcsight
 
 
-    cd /opt/HNP/scripts/
+    cd /opt/hnp/scripts/
     sudo ./install_hpfeeds-logger-arcsight.sh
 
-This will log the events as CEF to /var/log/HNP-arcsight.log
-
-## Data	
-*NOTICE* **This section is out of date. Community data is not collected by Anomali although HNP still attempts to send this data to Anomali servers.**	
-
-The HNP server reports anonymized attack data back to Anomali, Inc. (formerly	
-known as ThreatStream). If you are interested in viewing this data, get details	
-in the	
-[wiki](https://github.com/ehackify/HNP/wiki/Getting-Access-to-the-HNP-Community-Data).	
-This data reporting can be disabled by running the following command from the	
-HNP server after completing the initial installation steps outlined above:	
-`/opt/HNP/scripts/disable_collector.sh`	
-
+This will log the events as CEF to /var/log/hnp-arcsight.log
 
 ## Support or Contact
 eHackify.
